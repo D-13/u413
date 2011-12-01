@@ -1,0 +1,1520 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="U413DBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="U413DBModelStoreContainer">
+          <EntitySet Name="Alias" EntityType="U413DBModel.Store.Alias" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="Banned_Users" EntityType="U413DBModel.Store.Banned_Users" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="Boards" EntityType="U413DBModel.Store.Boards" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="Channel_Status" EntityType="U413DBModel.Store.Channel_Status" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="Chat_Buffer" EntityType="U413DBModel.Store.Chat_Buffer" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="Ignores" EntityType="U413DBModel.Store.Ignores" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="Invite_Codes" EntityType="U413DBModel.Store.Invite_Codes" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="Messages" EntityType="U413DBModel.Store.Messages" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="Replies" EntityType="U413DBModel.Store.Replies" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="Roles" EntityType="U413DBModel.Store.Roles" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="ShortURLs" EntityType="U413DBModel.Store.ShortURLs" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="Topic_Follows" EntityType="U413DBModel.Store.Topic_Follows" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="Topic_Visits" EntityType="U413DBModel.Store.Topic_Visits" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="Topics" EntityType="U413DBModel.Store.Topics" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="User_Activity_Log" EntityType="U413DBModel.Store.User_Activity_Log" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="UserRoles" EntityType="U413DBModel.Store.UserRoles" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="Users" EntityType="U413DBModel.Store.Users" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="Variables" EntityType="U413DBModel.Store.Variables" store:Type="Tables" Schema="U413" />
+          <EntitySet Name="Viewed_Policies" EntityType="U413DBModel.Store.Viewed_Policies" store:Type="Tables" Schema="U413" />
+          <AssociationSet Name="Board_has_many_topics" Association="U413DBModel.Store.Board_has_many_topics">
+            <End Role="Boards" EntitySet="Boards" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="Roles_have_many_users" Association="U413DBModel.Store.Roles_have_many_users">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="Topic_has_many_replies" Association="U413DBModel.Store.Topic_has_many_replies">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="Replies" EntitySet="Replies" />
+          </AssociationSet>
+          <AssociationSet Name="Topic_has_many_topicfollows" Association="U413DBModel.Store.Topic_has_many_topicfollows">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="Topic_Follows" EntitySet="Topic_Follows" />
+          </AssociationSet>
+          <AssociationSet Name="Topic_has_many_topicvisits" Association="U413DBModel.Store.Topic_has_many_topicvisits">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="Topic_Visits" EntitySet="Topic_Visits" />
+          </AssociationSet>
+          <AssociationSet Name="User_can_be_banned" Association="U413DBModel.Store.User_can_be_banned">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Banned_Users" EntitySet="Banned_Users" />
+          </AssociationSet>
+          <AssociationSet Name="User_can_be_ignored" Association="U413DBModel.Store.User_can_be_ignored">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ignores" EntitySet="Ignores" />
+          </AssociationSet>
+          <AssociationSet Name="User_can_have_many_acitivitylogitems" Association="U413DBModel.Store.User_can_have_many_acitivitylogitems">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="User_Activity_Log" EntitySet="User_Activity_Log" />
+          </AssociationSet>
+          <AssociationSet Name="User_can_have_many_invite_codes" Association="U413DBModel.Store.User_can_have_many_invite_codes">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Invite_Codes" EntitySet="Invite_Codes" />
+          </AssociationSet>
+          <AssociationSet Name="User_can_have_many_topicfollows" Association="U413DBModel.Store.User_can_have_many_topicfollows">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Topic_Follows" EntitySet="Topic_Follows" />
+          </AssociationSet>
+          <AssociationSet Name="User_can_ignore_someone" Association="U413DBModel.Store.User_can_ignore_someone">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ignores" EntitySet="Ignores" />
+          </AssociationSet>
+          <AssociationSet Name="User_can_receive_many_messages" Association="U413DBModel.Store.User_can_receive_many_messages">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="User_can_send_many_messages_" Association="U413DBModel.Store.User_can_send_many_messages_">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="User_can_view_many_policies" Association="U413DBModel.Store.User_can_view_many_policies">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Viewed_Policies" EntitySet="Viewed_Policies" />
+          </AssociationSet>
+          <AssociationSet Name="User_creates_many_bans" Association="U413DBModel.Store.User_creates_many_bans">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Banned_Users" EntitySet="Banned_Users" />
+          </AssociationSet>
+          <AssociationSet Name="User_has_many_replies" Association="U413DBModel.Store.User_has_many_replies">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Replies" EntitySet="Replies" />
+          </AssociationSet>
+          <AssociationSet Name="User_has_many_roles" Association="U413DBModel.Store.User_has_many_roles">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="User_has_many_topics" Association="U413DBModel.Store.User_has_many_topics">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="Users_have_many_topicvisits" Association="U413DBModel.Store.Users_have_many_topicvisits">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Topic_Visits" EntitySet="Topic_Visits" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Alias">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Shortcut" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="Shortcut" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Command" Type="nvarchar" Nullable="false" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Banned_Users">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="15" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" Nullable="false" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Boards">
+          <Key>
+            <PropertyRef Name="BoardID" />
+          </Key>
+          <Property Name="BoardID" Type="smallint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Hidden" Type="bit" Nullable="false" />
+          <Property Name="ModsOnly" Type="bit" Nullable="false" />
+          <Property Name="Locked" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Channel_Status">
+          <Key>
+            <PropertyRef Name="Channel" />
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Channel" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="LastActive" Type="datetime" Nullable="false" />
+          <Property Name="LastSeen" Type="datetime" Nullable="false" />
+          <Property Name="LastID" Type="bigint" Nullable="false" />
+          <Property Name="PositionTop" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="PositionLeft" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ElementHeight" Type="int" Nullable="false" />
+          <Property Name="ElementWidth" Type="int" Nullable="false" />
+          <Property Name="Minimized" Type="bit" Nullable="false" />
+          <Property Name="ZIndex" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Chat_Buffer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Channel" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="SentDate" Type="datetime" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ignores">
+          <Key>
+            <PropertyRef Name="IgnoreID" />
+          </Key>
+          <Property Name="IgnoreID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="InitiatingUser" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="IgnoredUser" Type="nvarchar" Nullable="false" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Invite_Codes">
+          <Key>
+            <PropertyRef Name="InviteCode" />
+          </Key>
+          <Property Name="InviteCode" Type="nchar" Nullable="false" MaxLength="15" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Sender" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="Recipient" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="MessageRead" Type="bit" Nullable="false" />
+          <Property Name="SenderDeleted" Type="bit" Nullable="false" />
+          <Property Name="RecipientDeleted" Type="bit" Nullable="false" />
+          <Property Name="SentDate" Type="datetime" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Body" Type="nvarchar" Nullable="false" />
+          <Property Name="RecipientLocked" Type="bit" Nullable="false" />
+          <Property Name="SenderLocked" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Replies">
+          <Key>
+            <PropertyRef Name="ReplyID" />
+          </Key>
+          <Property Name="ReplyID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TopicID" Type="bigint" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="PostedDate" Type="datetime" Nullable="false" />
+          <Property Name="Body" Type="nvarchar" Nullable="false" />
+          <Property Name="ModsOnly" Type="bit" Nullable="false" />
+          <Property Name="LastEdit" Type="datetime" Nullable="false" />
+          <Property Name="EditedBy" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="ShortURLs">
+          <Key>
+            <PropertyRef Name="UrlID" />
+          </Key>
+          <Property Name="UrlID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="nvarchar" Nullable="false" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Topic_Follows">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="TopicID" Type="bigint" Nullable="false" />
+          <Property Name="Saved" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Topic_Visits">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="TopicID" Type="bigint" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Topics">
+          <Key>
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="TopicID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BoardID" Type="smallint" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="PostedDate" Type="datetime" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Body" Type="nvarchar" Nullable="false" />
+          <Property Name="ModsOnly" Type="bit" Nullable="false" />
+          <Property Name="Locked" Type="bit" Nullable="false" />
+          <Property Name="Stickied" Type="bit" Nullable="false" />
+          <Property Name="GlobalSticky" Type="bit" Nullable="false" />
+          <Property Name="LastEdit" Type="datetime" Nullable="false" />
+          <Property Name="EditedBy" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="User_Activity_Log">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Information" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserRoles">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="RoleName" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="20" />
+          <Property Name="JoinDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLogin" Type="datetime" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="NotifyReplies" Type="bit" Nullable="false" />
+          <Property Name="NotifyMessages" Type="bit" Nullable="false" />
+          <Property Name="AutoFollow" Type="bit" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="25" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="25" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="Bio" Type="nvarchar" />
+          <Property Name="Bits" Type="bigint" Nullable="false" />
+          <Property Name="TimeZone" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Sound" Type="bit" Nullable="false" />
+          <Property Name="ChatOpen" Type="bit" Nullable="false" />
+          <Property Name="ShowTimestamps" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Variables">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Value" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="Viewed_Policies">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="PolicyName" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="PolicyName" Type="nvarchar" Nullable="false" MaxLength="25" />
+        </EntityType>
+        <Association Name="Board_has_many_topics">
+          <End Role="Boards" Type="U413DBModel.Store.Boards" Multiplicity="1" />
+          <End Role="Topics" Type="U413DBModel.Store.Topics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Boards">
+              <PropertyRef Name="BoardID" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="BoardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Roles_have_many_users">
+          <End Role="Roles" Type="U413DBModel.Store.Roles" Multiplicity="1" />
+          <End Role="UserRoles" Type="U413DBModel.Store.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="RoleName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Topic_has_many_replies">
+          <End Role="Topics" Type="U413DBModel.Store.Topics" Multiplicity="1" />
+          <End Role="Replies" Type="U413DBModel.Store.Replies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="TopicID" />
+            </Principal>
+            <Dependent Role="Replies">
+              <PropertyRef Name="TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Topic_has_many_topicfollows">
+          <End Role="Topics" Type="U413DBModel.Store.Topics" Multiplicity="1" />
+          <End Role="Topic_Follows" Type="U413DBModel.Store.Topic_Follows" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="TopicID" />
+            </Principal>
+            <Dependent Role="Topic_Follows">
+              <PropertyRef Name="TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Topic_has_many_topicvisits">
+          <End Role="Topics" Type="U413DBModel.Store.Topics" Multiplicity="1" />
+          <End Role="Topic_Visits" Type="U413DBModel.Store.Topic_Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="TopicID" />
+            </Principal>
+            <Dependent Role="Topic_Visits">
+              <PropertyRef Name="TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_can_be_banned">
+          <End Role="Users" Type="U413DBModel.Store.Users" Multiplicity="1" />
+          <End Role="Banned_Users" Type="U413DBModel.Store.Banned_Users" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Banned_Users">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_can_be_ignored">
+          <End Role="Users" Type="U413DBModel.Store.Users" Multiplicity="1" />
+          <End Role="Ignores" Type="U413DBModel.Store.Ignores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Ignores">
+              <PropertyRef Name="IgnoredUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_can_have_many_acitivitylogitems">
+          <End Role="Users" Type="U413DBModel.Store.Users" Multiplicity="1" />
+          <End Role="User_Activity_Log" Type="U413DBModel.Store.User_Activity_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="User_Activity_Log">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_can_have_many_invite_codes">
+          <End Role="Users" Type="U413DBModel.Store.Users" Multiplicity="1" />
+          <End Role="Invite_Codes" Type="U413DBModel.Store.Invite_Codes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Invite_Codes">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_can_have_many_topicfollows">
+          <End Role="Users" Type="U413DBModel.Store.Users" Multiplicity="1" />
+          <End Role="Topic_Follows" Type="U413DBModel.Store.Topic_Follows" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Topic_Follows">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_can_ignore_someone">
+          <End Role="Users" Type="U413DBModel.Store.Users" Multiplicity="1" />
+          <End Role="Ignores" Type="U413DBModel.Store.Ignores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Ignores">
+              <PropertyRef Name="InitiatingUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_can_receive_many_messages">
+          <End Role="Users" Type="U413DBModel.Store.Users" Multiplicity="1" />
+          <End Role="Messages" Type="U413DBModel.Store.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Recipient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_can_send_many_messages_">
+          <End Role="Users" Type="U413DBModel.Store.Users" Multiplicity="1" />
+          <End Role="Messages" Type="U413DBModel.Store.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Sender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_can_view_many_policies">
+          <End Role="Users" Type="U413DBModel.Store.Users" Multiplicity="1" />
+          <End Role="Viewed_Policies" Type="U413DBModel.Store.Viewed_Policies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Viewed_Policies">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_creates_many_bans">
+          <End Role="Users" Type="U413DBModel.Store.Users" Multiplicity="0..1" />
+          <End Role="Banned_Users" Type="U413DBModel.Store.Banned_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Banned_Users">
+              <PropertyRef Name="Creator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_has_many_replies">
+          <End Role="Users" Type="U413DBModel.Store.Users" Multiplicity="1" />
+          <End Role="Replies" Type="U413DBModel.Store.Replies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Replies">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_has_many_roles">
+          <End Role="Users" Type="U413DBModel.Store.Users" Multiplicity="1" />
+          <End Role="UserRoles" Type="U413DBModel.Store.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_has_many_topics">
+          <End Role="Users" Type="U413DBModel.Store.Users" Multiplicity="1" />
+          <End Role="Topics" Type="U413DBModel.Store.Topics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Users_have_many_topicvisits">
+          <End Role="Users" Type="U413DBModel.Store.Users" Multiplicity="1" />
+          <End Role="Topic_Visits" Type="U413DBModel.Store.Topic_Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Topic_Visits">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="U413.Domain.Models" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="EntityContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bans" EntityType="U413.Domain.Models.Ban" />
+          <EntitySet Name="ChatBuffer" EntityType="U413.Domain.Models.ChatBufferItem" />
+          <EntitySet Name="Invites" EntityType="U413.Domain.Models.Invite" />
+          <EntitySet Name="Messages" EntityType="U413.Domain.Models.Message" />
+          <EntitySet Name="Replies" EntityType="U413.Domain.Models.Reply" />
+          <EntitySet Name="TopicFollows" EntityType="U413.Domain.Models.TopicFollow" />
+          <EntitySet Name="TopicVisits" EntityType="U413.Domain.Models.TopicVisit" />
+          <EntitySet Name="Topics" EntityType="U413.Domain.Models.Topic" />
+          <EntitySet Name="UserActivityLog" EntityType="U413.Domain.Models.UserActivityLogItem" />
+          <EntitySet Name="Users" EntityType="U413.Domain.Models.User" />
+          <EntitySet Name="ViewedPolicies" EntityType="U413.Domain.Models.ViewedPolicy" />
+          <AssociationSet Name="FK_Banned_Users_Users" Association="U413.Domain.Models.FK_Banned_Users_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Banned_Users" EntitySet="Bans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_Buffer_Users" Association="U413.Domain.Models.FK_Chat_Buffer_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Chat_Buffer" EntitySet="ChatBuffer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invite_Codes_Users" Association="U413.Domain.Models.FK_Invite_Codes_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Invite_Codes" EntitySet="Invites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Users" Association="U413.Domain.Models.FK_Messages_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Users1" Association="U413.Domain.Models.FK_Messages_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replies_Topics" Association="U413.Domain.Models.FK_Replies_Topics">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="Replies" EntitySet="Replies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replies_Users" Association="U413.Domain.Models.FK_Replies_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Replies" EntitySet="Replies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Followed_Topics_Topics" Association="U413.Domain.Models.FK_Followed_Topics_Topics">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="Topic_Follows" EntitySet="TopicFollows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Followed_Topics_Users" Association="U413.Domain.Models.FK_Followed_Topics_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Topic_Follows" EntitySet="TopicFollows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visited_Topics_Topics" Association="U413.Domain.Models.FK_Visited_Topics_Topics">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="Topic_Visits" EntitySet="TopicVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visited_Topics_Users" Association="U413.Domain.Models.FK_Visited_Topics_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Topic_Visits" EntitySet="TopicVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topics_Users" Association="U413.Domain.Models.FK_Topics_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Activity_Log_Users" Association="U413.Domain.Models.FK_User_Activity_Log_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="User_Activity_Log" EntitySet="UserActivityLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Viewed_Policies_Users" Association="U413.Domain.Models.FK_Viewed_Policies_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Viewed_Policies" EntitySet="ViewedPolicies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replies_Users1" Association="U413.Domain.Models.FK_Replies_Users1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Reply" EntitySet="Replies" />
+          </AssociationSet>
+          <EntitySet Name="Ignores" EntityType="U413.Domain.Models.Ignore" />
+          <AssociationSet Name="FK_Ignores_Users" Association="U413.Domain.Models.FK_Ignores_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Ignore" EntitySet="Ignores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ignores_Users1" Association="U413.Domain.Models.FK_Ignores_Users1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Ignore" EntitySet="Ignores" />
+          </AssociationSet>
+          <EntitySet Name="ChannelStatuses" EntityType="U413.Domain.Models.ChannelStatus" />
+          <AssociationSet Name="FK_Channel_Status_Users" Association="U413.Domain.Models.FK_Channel_Status_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Channel_Status" EntitySet="ChannelStatuses" />
+          </AssociationSet>
+          <EntitySet Name="Aliases" EntityType="U413.Domain.Models.Alias" />
+          <EntitySet Name="Boards" EntityType="U413.Domain.Models.Board" />
+          <AssociationSet Name="FK_Topics_Boards" Association="U413.Domain.Models.FK_Topics_Boards">
+            <End Role="Board" EntitySet="Boards" />
+            <End Role="Topic" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BanCreator_User" Association="U413.Domain.Models.FK_BanCreator_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Ban" EntitySet="Bans" />
+          </AssociationSet>
+          <EntitySet Name="Roles" EntityType="U413.Domain.Models.Role" />
+          <AssociationSet Name="UserRoles" Association="U413.Domain.Models.UserRoles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Variables" EntityType="U413.Domain.Models.Variable" />
+          <EntitySet Name="ShortURLs" EntityType="U413.Domain.Models.ShortURL" />
+        </EntityContainer>
+        <EntityType Name="Ban">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <Property Name="Reason" Type="String" Nullable="false" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="User" Relationship="U413.Domain.Models.FK_Banned_Users_Users" FromRole="Banned_Users" ToRole="Users" />
+          <Property Type="String" Name="Creator" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BanCreator" Relationship="U413.Domain.Models.FK_BanCreator_User" FromRole="Ban" ToRole="User" />
+        </EntityType>
+        <EntityType Name="ChatBufferItem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Channel" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="SentDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="U413.Domain.Models.FK_Chat_Buffer_Users" FromRole="Chat_Buffer" ToRole="Users" />
+          <Property Type="String" Name="Text" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Invite">
+          <Key>
+            <PropertyRef Name="InviteCode" />
+          </Key>
+          <Property Name="InviteCode" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="true" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="User" Relationship="U413.Domain.Models.FK_Invite_Codes_Users" FromRole="Invite_Codes" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sender" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="Recipient" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="MessageRead" Type="Boolean" Nullable="false" />
+          <Property Name="SentDate" Type="DateTime" Nullable="false" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="FromUser" Relationship="U413.Domain.Models.FK_Messages_Users" FromRole="Messages" ToRole="Users" />
+          <NavigationProperty Name="ToUser" Relationship="U413.Domain.Models.FK_Messages_Users1" FromRole="Messages" ToRole="Users" />
+          <Property Type="Boolean" Name="SenderDeleted" Nullable="false" />
+          <Property Type="Boolean" Name="RecipientDeleted" Nullable="false" />
+          <Property Type="Boolean" Name="RecipientLocked" Nullable="false" />
+          <Property Type="Boolean" Name="SenderLocked" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reply">
+          <Key>
+            <PropertyRef Name="ReplyID" />
+          </Key>
+          <Property Name="ReplyID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TopicID" Type="Int64" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="PostedDate" Type="DateTime" Nullable="false" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="ModsOnly" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Topic" Relationship="U413.Domain.Models.FK_Replies_Topics" FromRole="Replies" ToRole="Topics" />
+          <NavigationProperty Name="User" Relationship="U413.Domain.Models.FK_Replies_Users" FromRole="Replies" ToRole="Users" />
+          <Property Name="LastEdit" Type="DateTime" Nullable="false" />
+          <Property Type="String" Name="EditedBy" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserEdited" Relationship="U413.Domain.Models.FK_Replies_Users1" FromRole="Reply" ToRole="User" />
+        </EntityType>
+        <EntityType Name="TopicFollow">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="TopicID" Type="Int64" Nullable="false" />
+          <Property Name="Saved" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Topic" Relationship="U413.Domain.Models.FK_Followed_Topics_Topics" FromRole="Topic_Follows" ToRole="Topics" />
+          <NavigationProperty Name="User" Relationship="U413.Domain.Models.FK_Followed_Topics_Users" FromRole="Topic_Follows" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="TopicVisit">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="TopicID" Type="Int64" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Topic" Relationship="U413.Domain.Models.FK_Visited_Topics_Topics" FromRole="Topic_Visits" ToRole="Topics" />
+          <NavigationProperty Name="User" Relationship="U413.Domain.Models.FK_Visited_Topics_Users" FromRole="Topic_Visits" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="TopicID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BoardID" Type="Int16" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="PostedDate" Type="DateTime" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="ModsOnly" Type="Boolean" Nullable="false" />
+          <Property Name="Locked" Type="Boolean" Nullable="false" />
+          <Property Name="Stickied" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Replies" Relationship="U413.Domain.Models.FK_Replies_Topics" FromRole="Topics" ToRole="Replies" />
+          <NavigationProperty Name="Followers" Relationship="U413.Domain.Models.FK_Followed_Topics_Topics" FromRole="Topics" ToRole="Topic_Follows" />
+          <NavigationProperty Name="Visits" Relationship="U413.Domain.Models.FK_Visited_Topics_Topics" FromRole="Topics" ToRole="Topic_Visits" />
+          <NavigationProperty Name="User" Relationship="U413.Domain.Models.FK_Topics_Users" FromRole="Topics" ToRole="Users" />
+          <Property Name="LastEdit" Type="DateTime" Nullable="false" />
+          <Property Type="String" Name="EditedBy" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="GlobalSticky" Nullable="false" />
+          <NavigationProperty Name="Board" Relationship="U413.Domain.Models.FK_Topics_Boards" FromRole="Topic" ToRole="Board" />
+        </EntityType>
+        <EntityType Name="UserActivityLogItem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Information" Type="String" Nullable="false" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="User" Relationship="U413.Domain.Models.FK_User_Activity_Log_Users" FromRole="User_Activity_Log" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="IPAddress" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="JoinDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastLogin" Type="DateTime" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="NotifyReplies" Type="Boolean" Nullable="false" />
+          <Property Name="NotifyMessages" Type="Boolean" Nullable="false" />
+          <Property Name="AutoFollow" Type="Boolean" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="FirstName" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="Location" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Bio" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="Bits" Type="Int64" Nullable="false" />
+          <Property Name="TimeZone" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Sound" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BanInfo" Relationship="U413.Domain.Models.FK_Banned_Users_Users" FromRole="Users" ToRole="Banned_Users" />
+          <NavigationProperty Name="ChatBuffer" Relationship="U413.Domain.Models.FK_Chat_Buffer_Users" FromRole="Users" ToRole="Chat_Buffer" />
+          <NavigationProperty Name="InviteCodes" Relationship="U413.Domain.Models.FK_Invite_Codes_Users" FromRole="Users" ToRole="Invite_Codes" />
+          <NavigationProperty Name="SentMessages" Relationship="U413.Domain.Models.FK_Messages_Users" FromRole="Users" ToRole="Messages" />
+          <NavigationProperty Name="ReceivedMessages" Relationship="U413.Domain.Models.FK_Messages_Users1" FromRole="Users" ToRole="Messages" />
+          <NavigationProperty Name="Replies" Relationship="U413.Domain.Models.FK_Replies_Users" FromRole="Users" ToRole="Replies" />
+          <NavigationProperty Name="FollowedTopics" Relationship="U413.Domain.Models.FK_Followed_Topics_Users" FromRole="Users" ToRole="Topic_Follows" />
+          <NavigationProperty Name="VisitedTopics" Relationship="U413.Domain.Models.FK_Visited_Topics_Users" FromRole="Users" ToRole="Topic_Visits" />
+          <NavigationProperty Name="Topics" Relationship="U413.Domain.Models.FK_Topics_Users" FromRole="Users" ToRole="Topics" />
+          <NavigationProperty Name="UserActivityLog" Relationship="U413.Domain.Models.FK_User_Activity_Log_Users" FromRole="Users" ToRole="User_Activity_Log" />
+          <NavigationProperty Name="ViewedPolicies" Relationship="U413.Domain.Models.FK_Viewed_Policies_Users" FromRole="Users" ToRole="Viewed_Policies" />
+          <NavigationProperty Name="RepliesEdited" Relationship="U413.Domain.Models.FK_Replies_Users1" FromRole="User" ToRole="Reply" />
+          <NavigationProperty Name="Ignores" Relationship="U413.Domain.Models.FK_Ignores_Users" FromRole="User" ToRole="Ignore" />
+          <NavigationProperty Name="IgnoredBy" Relationship="U413.Domain.Models.FK_Ignores_Users1" FromRole="User" ToRole="Ignore" />
+          <NavigationProperty Name="Channel_Status" Relationship="U413.Domain.Models.FK_Channel_Status_Users" FromRole="User" ToRole="Channel_Status" />
+          <Property Type="Boolean" Name="ChatOpen" Nullable="false" />
+          <NavigationProperty Name="Banned_Users" Relationship="U413.Domain.Models.FK_BanCreator_User" FromRole="User" ToRole="Ban" />
+          <NavigationProperty Name="Roles" Relationship="U413.Domain.Models.UserRoles" FromRole="User" ToRole="Role" />
+          <Property Type="Boolean" Name="ShowTimestamps" Nullable="false" />
+          </EntityType>
+        <EntityType Name="ViewedPolicy">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="PolicyName" />
+          </Key>
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="PolicyName" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="User" Relationship="U413.Domain.Models.FK_Viewed_Policies_Users" FromRole="Viewed_Policies" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_Banned_Users_Users">
+          <End Role="Users" Type="U413.Domain.Models.User" Multiplicity="1" />
+          <End Role="Banned_Users" Type="U413.Domain.Models.Ban" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Banned_Users">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chat_Buffer_Users">
+          <End Role="Users" Type="U413.Domain.Models.User" Multiplicity="1" />
+          <End Role="Chat_Buffer" Type="U413.Domain.Models.ChatBufferItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Chat_Buffer">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invite_Codes_Users">
+          <End Role="Users" Type="U413.Domain.Models.User" Multiplicity="1" />
+          <End Role="Invite_Codes" Type="U413.Domain.Models.Invite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Invite_Codes">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Users">
+          <End Role="Users" Type="U413.Domain.Models.User" Multiplicity="1" />
+          <End Role="Messages" Type="U413.Domain.Models.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Sender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Users1">
+          <End Role="Users" Type="U413.Domain.Models.User" Multiplicity="1" />
+          <End Role="Messages" Type="U413.Domain.Models.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Recipient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replies_Topics">
+          <End Role="Topics" Type="U413.Domain.Models.Topic" Multiplicity="1" />
+          <End Role="Replies" Type="U413.Domain.Models.Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="TopicID" />
+            </Principal>
+            <Dependent Role="Replies">
+              <PropertyRef Name="TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replies_Users">
+          <End Role="Users" Type="U413.Domain.Models.User" Multiplicity="1" />
+          <End Role="Replies" Type="U413.Domain.Models.Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Replies">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Followed_Topics_Topics">
+          <End Role="Topics" Type="U413.Domain.Models.Topic" Multiplicity="1" />
+          <End Role="Topic_Follows" Type="U413.Domain.Models.TopicFollow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="TopicID" />
+            </Principal>
+            <Dependent Role="Topic_Follows">
+              <PropertyRef Name="TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Followed_Topics_Users">
+          <End Role="Users" Type="U413.Domain.Models.User" Multiplicity="1" />
+          <End Role="Topic_Follows" Type="U413.Domain.Models.TopicFollow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Topic_Follows">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visited_Topics_Topics">
+          <End Role="Topics" Type="U413.Domain.Models.Topic" Multiplicity="1" />
+          <End Role="Topic_Visits" Type="U413.Domain.Models.TopicVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="TopicID" />
+            </Principal>
+            <Dependent Role="Topic_Visits">
+              <PropertyRef Name="TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visited_Topics_Users">
+          <End Role="Users" Type="U413.Domain.Models.User" Multiplicity="1" />
+          <End Role="Topic_Visits" Type="U413.Domain.Models.TopicVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Topic_Visits">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topics_Users">
+          <End Role="Users" Type="U413.Domain.Models.User" Multiplicity="1" />
+          <End Role="Topics" Type="U413.Domain.Models.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Activity_Log_Users">
+          <End Role="Users" Type="U413.Domain.Models.User" Multiplicity="1" />
+          <End Role="User_Activity_Log" Type="U413.Domain.Models.UserActivityLogItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="User_Activity_Log">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Viewed_Policies_Users">
+          <End Role="Users" Type="U413.Domain.Models.User" Multiplicity="1" />
+          <End Role="Viewed_Policies" Type="U413.Domain.Models.ViewedPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Viewed_Policies">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replies_Users1">
+          <End Type="U413.Domain.Models.User" Role="User" Multiplicity="0..1" />
+          <End Type="U413.Domain.Models.Reply" Role="Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="EditedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Ignore">
+          <Key>
+            <PropertyRef Name="IgnoreID" />
+          </Key>
+          <Property Type="Int64" Name="IgnoreID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="InitiatingUser" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IgnoredUser" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="U413.Domain.Models.FK_Ignores_Users" FromRole="Ignore" ToRole="User" />
+          <NavigationProperty Name="Ignores" Relationship="U413.Domain.Models.FK_Ignores_Users1" FromRole="Ignore" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Ignores_Users">
+          <End Type="U413.Domain.Models.User" Role="User" Multiplicity="1" />
+          <End Type="U413.Domain.Models.Ignore" Role="Ignore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Ignore">
+              <PropertyRef Name="InitiatingUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ignores_Users1">
+          <End Type="U413.Domain.Models.User" Role="User" Multiplicity="1" />
+          <End Type="U413.Domain.Models.Ignore" Role="Ignore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Ignore">
+              <PropertyRef Name="IgnoredUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ChannelStatus">
+          <Key>
+            <PropertyRef Name="Channel" />
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Type="String" Name="Channel" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastActive" Nullable="false" />
+          <Property Type="DateTime" Name="LastSeen" Nullable="false" />
+          <Property Type="String" Name="PositionTop" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PositionLeft" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ElementHeight" Nullable="false" />
+          <Property Type="Int32" Name="ElementWidth" Nullable="false" />
+          <Property Type="Boolean" Name="Minimized" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="U413.Domain.Models.FK_Channel_Status_Users" FromRole="Channel_Status" ToRole="User" />
+          <Property Type="Int32" Name="ZIndex" Nullable="false" />
+          <Property Type="Int64" Name="LastID" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Channel_Status_Users">
+          <End Type="U413.Domain.Models.User" Role="User" Multiplicity="1" />
+          <End Type="U413.Domain.Models.ChannelStatus" Role="Channel_Status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Channel_Status">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Alias">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Shortcut" />
+          </Key>
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Shortcut" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Command" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Board">
+          <Key>
+            <PropertyRef Name="BoardID" />
+          </Key>
+          <Property Type="Int16" Name="BoardID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Hidden" Nullable="false" />
+          <Property Type="Boolean" Name="ModsOnly" Nullable="false" />
+          <Property Type="Boolean" Name="Locked" Nullable="false" />
+          <NavigationProperty Name="Topics" Relationship="U413.Domain.Models.FK_Topics_Boards" FromRole="Board" ToRole="Topic" />
+        </EntityType>
+        <Association Name="FK_Topics_Boards">
+          <End Type="U413.Domain.Models.Board" Role="Board" Multiplicity="1" />
+          <End Type="U413.Domain.Models.Topic" Role="Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Board">
+              <PropertyRef Name="BoardID" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="BoardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BanCreator_User">
+          <End Type="U413.Domain.Models.User" Role="User" Multiplicity="1" />
+          <End Type="U413.Domain.Models.Ban" Role="Ban" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Ban">
+              <PropertyRef Name="Creator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="U413.Domain.Models.UserRoles" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <Association Name="UserRoles">
+          <End Type="U413.Domain.Models.Role" Role="Role" Multiplicity="*" />
+          <End Type="U413.Domain.Models.User" Role="User" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Variable">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Value" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ShortURL">
+          <Key>
+            <PropertyRef Name="UrlID" />
+          </Key>
+          <Property Type="Int64" Name="UrlID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Url" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="U413DBModelStoreContainer" CdmEntityContainer="EntityContainer">
+          <EntitySetMapping Name="Bans">
+            <EntityTypeMapping TypeName="U413.Domain.Models.Ban">
+              <MappingFragment StoreEntitySet="Banned_Users">
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChatBuffer">
+            <EntityTypeMapping TypeName="U413.Domain.Models.ChatBufferItem">
+              <MappingFragment StoreEntitySet="Chat_Buffer">
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Channel" ColumnName="Channel" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="SentDate" ColumnName="SentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invites">
+            <EntityTypeMapping TypeName="U413.Domain.Models.Invite">
+              <MappingFragment StoreEntitySet="Invite_Codes">
+                <ScalarProperty Name="InviteCode" ColumnName="InviteCode" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="U413.Domain.Models.Message">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="SenderLocked" ColumnName="SenderLocked" />
+                <ScalarProperty Name="RecipientLocked" ColumnName="RecipientLocked" />
+                <ScalarProperty Name="RecipientDeleted" ColumnName="RecipientDeleted" />
+                <ScalarProperty Name="SenderDeleted" ColumnName="SenderDeleted" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="Sender" ColumnName="Sender" />
+                <ScalarProperty Name="Recipient" ColumnName="Recipient" />
+                <ScalarProperty Name="MessageRead" ColumnName="MessageRead" />
+                <ScalarProperty Name="SentDate" ColumnName="SentDate" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Replies">
+            <EntityTypeMapping TypeName="U413.Domain.Models.Reply">
+              <MappingFragment StoreEntitySet="Replies">
+                <ScalarProperty Name="EditedBy" ColumnName="EditedBy" />
+                <ScalarProperty Name="LastEdit" ColumnName="LastEdit" />
+                <ScalarProperty Name="ReplyID" ColumnName="ReplyID" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="ModsOnly" ColumnName="ModsOnly" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopicFollows">
+            <EntityTypeMapping TypeName="U413.Domain.Models.TopicFollow">
+              <MappingFragment StoreEntitySet="Topic_Follows">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="Saved" ColumnName="Saved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopicVisits">
+            <EntityTypeMapping TypeName="U413.Domain.Models.TopicVisit">
+              <MappingFragment StoreEntitySet="Topic_Visits">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics">
+            <EntityTypeMapping TypeName="U413.Domain.Models.Topic">
+              <MappingFragment StoreEntitySet="Topics">
+                <ScalarProperty Name="GlobalSticky" ColumnName="GlobalSticky" />
+                <ScalarProperty Name="EditedBy" ColumnName="EditedBy" />
+                <ScalarProperty Name="LastEdit" ColumnName="LastEdit" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="BoardID" ColumnName="BoardID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="ModsOnly" ColumnName="ModsOnly" />
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
+                <ScalarProperty Name="Stickied" ColumnName="Stickied" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserActivityLog">
+            <EntityTypeMapping TypeName="U413.Domain.Models.UserActivityLogItem">
+              <MappingFragment StoreEntitySet="User_Activity_Log">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Information" ColumnName="Information" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="U413.Domain.Models.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ShowTimestamps" ColumnName="ShowTimestamps" />
+                <ScalarProperty Name="ChatOpen" ColumnName="ChatOpen" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NotifyReplies" ColumnName="NotifyReplies" />
+                <ScalarProperty Name="NotifyMessages" ColumnName="NotifyMessages" />
+                <ScalarProperty Name="AutoFollow" ColumnName="AutoFollow" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Bio" ColumnName="Bio" />
+                <ScalarProperty Name="Bits" ColumnName="Bits" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="Sound" ColumnName="Sound" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewedPolicies">
+            <EntityTypeMapping TypeName="U413.Domain.Models.ViewedPolicy">
+              <MappingFragment StoreEntitySet="Viewed_Policies">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="PolicyName" ColumnName="PolicyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ignores">
+            <EntityTypeMapping TypeName="U413.Domain.Models.Ignore">
+              <MappingFragment StoreEntitySet="Ignores">
+                <ScalarProperty Name="IgnoredUser" ColumnName="IgnoredUser" />
+                <ScalarProperty Name="InitiatingUser" ColumnName="InitiatingUser" />
+                <ScalarProperty Name="IgnoreID" ColumnName="IgnoreID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChannelStatuses">
+            <EntityTypeMapping TypeName="U413.Domain.Models.ChannelStatus">
+              <MappingFragment StoreEntitySet="Channel_Status">
+                <ScalarProperty Name="LastID" ColumnName="LastID" />
+                <ScalarProperty Name="ZIndex" ColumnName="ZIndex" />
+                <ScalarProperty Name="Minimized" ColumnName="Minimized" />
+                <ScalarProperty Name="ElementWidth" ColumnName="ElementWidth" />
+                <ScalarProperty Name="ElementHeight" ColumnName="ElementHeight" />
+                <ScalarProperty Name="PositionLeft" ColumnName="PositionLeft" />
+                <ScalarProperty Name="PositionTop" ColumnName="PositionTop" />
+                <ScalarProperty Name="LastSeen" ColumnName="LastSeen" />
+                <ScalarProperty Name="LastActive" ColumnName="LastActive" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Channel" ColumnName="Channel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Aliases">
+            <EntityTypeMapping TypeName="U413.Domain.Models.Alias">
+              <MappingFragment StoreEntitySet="Alias">
+                <ScalarProperty Name="Command" ColumnName="Command" />
+                <ScalarProperty Name="Shortcut" ColumnName="Shortcut" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Boards">
+            <EntityTypeMapping TypeName="U413.Domain.Models.Board">
+              <MappingFragment StoreEntitySet="Boards">
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
+                <ScalarProperty Name="ModsOnly" ColumnName="ModsOnly" />
+                <ScalarProperty Name="Hidden" ColumnName="Hidden" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BoardID" ColumnName="BoardID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="U413.Domain.Models.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UserRoles" TypeName="U413.Domain.Models.UserRoles" StoreEntitySet="UserRoles">
+            <EndProperty Name="User">
+              <ScalarProperty Name="Username" ColumnName="Username" />
+            </EndProperty>
+            <EndProperty Name="Role">
+              <ScalarProperty Name="Name" ColumnName="RoleName" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Variables">
+            <EntityTypeMapping TypeName="U413.Domain.Models.Variable">
+              <MappingFragment StoreEntitySet="Variables">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShortURLs">
+            <EntityTypeMapping TypeName="U413.Domain.Models.ShortURL">
+              <MappingFragment StoreEntitySet="ShortURLs">
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="UrlID" ColumnName="UrlID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="U413DB" ZoomLevel="94">
+        <EntityTypeShape EntityType="U413.Domain.Models.Ban" Width="1.5" PointX="3" PointY="2.25" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="U413.Domain.Models.ChatBufferItem" Width="1.5" PointX="3.5" PointY="9" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="U413.Domain.Models.Invite" Width="1.5" PointX="3.5" PointY="11.5" Height="1.595683593749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="U413.Domain.Models.Message" Width="1.5" PointX="3.25" PointY="23.125" Height="3.1340950520833353" IsExpanded="true" />
+        <EntityTypeShape EntityType="U413.Domain.Models.Reply" Width="1.5" PointX="3.75" PointY="14.125" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="U413.Domain.Models.TopicFollow" Width="1.5" PointX="6" PointY="10.5" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="U413.Domain.Models.TopicVisit" Width="1.5" PointX="3.125" PointY="18.875" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="U413.Domain.Models.Topic" Width="1.5" PointX="8" PointY="13.625" Height="4.2879036458333353" IsExpanded="true" />
+        <EntityTypeShape EntityType="U413.Domain.Models.UserActivityLogItem" Width="1.5" PointX="5.625" PointY="23.75" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="U413.Domain.Models.User" Width="2" PointX="0.5" PointY="9.5" Height="7.9416308593750031" IsExpanded="true" />
+        <EntityTypeShape EntityType="U413.Domain.Models.ViewedPolicy" Width="1.5" PointX="0.5" PointY="24.5" Height="1.5956835937500102" IsExpanded="true" />
+        <AssociationConnector Association="U413.Domain.Models.FK_Banned_Users_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="0.76569058600431639" PointY="9.5" />
+          <ConnectorPoint PointX="0.76569058600431639" PointY="3.3098883765498233" />
+          <ConnectorPoint PointX="3" PointY="3.3098883765498233" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_Chat_Buffer_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.5" PointY="10.3362939453125" />
+          <ConnectorPoint PointX="3.5" PointY="10.3362939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_Invite_Codes_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.5" PointY="12.297841796874998" />
+          <ConnectorPoint PointX="3.5" PointY="12.297841796874998" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_Messages_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.18958135416924" PointY="17.633932291666667" />
+          <ConnectorPoint PointX="2.18958135416924" PointY="24.045251884331797" />
+          <ConnectorPoint PointX="3.25" PointY="24.045251884331797" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_Messages_Users1" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.37604317708462" PointY="17.633932291666667" />
+          <ConnectorPoint PointX="2.37604317708462" PointY="23.553873442165898" />
+          <ConnectorPoint PointX="3.25" PointY="23.553873442165898" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_Replies_Topics" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="16.459350585937504" />
+          <ConnectorPoint PointX="5.682291666666667" PointY="16.459350585937504" />
+          <ConnectorPoint PointX="5.848958333333333" PointY="16.459350585937504" />
+          <ConnectorPoint PointX="8" PointY="16.459350585937504" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_Replies_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.5" PointY="16.295534928713614" />
+          <ConnectorPoint PointX="3.75" PointY="16.295534928713614" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_Followed_Topics_Topics" ManuallyRouted="false">
+          <ConnectorPoint PointX="8.75" PointY="13.625" />
+          <ConnectorPoint PointX="8.75" PointY="11.490143229166669" />
+          <ConnectorPoint PointX="7.5" PointY="11.490143229166669" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_Followed_Topics_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.5" PointY="11.3362939453125" />
+          <ConnectorPoint PointX="5.822916666666667" PointY="11.3362939453125" />
+          <ConnectorPoint PointX="5.989583333333333" PointY="11.3362939453125" />
+          <ConnectorPoint PointX="6" PointY="11.3362939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_Visited_Topics_Topics" ManuallyRouted="false">
+          <ConnectorPoint PointX="8.75" PointY="17.912903645833335" />
+          <ConnectorPoint PointX="8.75" PointY="19.865143229166669" />
+          <ConnectorPoint PointX="5.848958333333333" PointY="19.865143229166669" />
+          <ConnectorPoint PointX="5.682291666666667" PointY="19.865143229166669" />
+          <ConnectorPoint PointX="4.625" PointY="19.865143229166669" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_Visited_Topics_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.43338928424715" PointY="17.633932291666667" />
+          <ConnectorPoint PointX="1.43338928424715" PointY="19.865143229166669" />
+          <ConnectorPoint PointX="1.7312765171287221" PointY="19.865143229166669" />
+          <ConnectorPoint PointX="1.8979431837953886" PointY="19.865143229166669" />
+          <ConnectorPoint PointX="2.1062480208359067" PointY="19.865143229166669" />
+          <ConnectorPoint PointX="2.2729146875025736" PointY="19.865143229166669" />
+          <ConnectorPoint PointX="2.2927098437512865" PointY="19.865143229166669" />
+          <ConnectorPoint PointX="2.4593765104179535" PointY="19.865143229166669" />
+          <ConnectorPoint PointX="3.125" PointY="19.865143229166669" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_Topics_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.5" PointY="17.477763671875003" />
+          <ConnectorPoint PointX="5.682291666666667" PointY="17.477763671875003" />
+          <ConnectorPoint PointX="5.848958333333333" PointY="17.477763671875003" />
+          <ConnectorPoint PointX="8" PointY="17.477763671875003" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_User_Activity_Log_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.5" PointY="13.7698008182082" />
+          <ConnectorPoint PointX="5.765625" PointY="13.7698008182082" />
+          <ConnectorPoint PointX="5.765625" PointY="23.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_Viewed_Policies_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="0.97193261757018967" PointY="17.633932291666667" />
+          <ConnectorPoint PointX="0.97193261757018967" PointY="24.5" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_Replies_Users1" >
+          <ConnectorPoint PointX="2.5" PointY="15.189757725506976" />
+          <ConnectorPoint PointX="3.75" PointY="15.189757725506976" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="U413.Domain.Models.Ignore" Width="1.5" PointX="5.75" PointY="4.25" Height="1.9802864583333388" />
+        <AssociationConnector Association="U413.Domain.Models.FK_Ignores_Users" >
+          <ConnectorPoint PointX="1.0938861720086326" PointY="9.5" />
+          <ConnectorPoint PointX="1.0938861720086326" PointY="4.9949446614583328" />
+          <ConnectorPoint PointX="2.1718769740525881" PointY="4.9949446614583319" />
+          <ConnectorPoint PointX="2.338543640719255" PointY="4.9949446614583328" />
+          <ConnectorPoint PointX="5.75" PointY="4.9949446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_Ignores_Users1" >
+          <ConnectorPoint PointX="1.4220817580129488" PointY="9.5" />
+          <ConnectorPoint PointX="1.4220817580129488" PointY="5.1849748307291676" />
+          <ConnectorPoint PointX="2.1718769740525881" PointY="5.1849748307291668" />
+          <ConnectorPoint PointX="2.338543640719255" PointY="5.1849748307291676" />
+          <ConnectorPoint PointX="5.75" PointY="5.1849748307291676" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="U413.Domain.Models.ChannelStatus" Width="1.5" PointX="2.375" PointY="5.375" Height="3.3263964843749996" />
+        <AssociationConnector Association="U413.Domain.Models.FK_Channel_Status_Users" >
+          <ConnectorPoint PointX="1.7502773440172652" PointY="9.5" />
+          <ConnectorPoint PointX="1.7502773440172652" PointY="7.0381982421875" />
+          <ConnectorPoint PointX="2.1718769740525881" PointY="7.0381982421874989" />
+          <ConnectorPoint PointX="2.338543640719255" PointY="7.0381982421875" />
+          <ConnectorPoint PointX="2.375" PointY="7.0381982421875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="U413.Domain.Models.Alias" Width="1.5" PointX="8.375" PointY="5.25" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="U413.Domain.Models.Board" Width="1.5" PointX="5.875" PointY="6.625" Height="2.3648893229166656" />
+        <AssociationConnector Association="U413.Domain.Models.FK_Topics_Boards" >
+          <ConnectorPoint PointX="5.90625" PointY="8.9898893229166656" />
+          <ConnectorPoint PointX="5.90625" PointY="14.627271263020834" />
+          <ConnectorPoint PointX="8" PointY="14.627271263020834" />
+        </AssociationConnector>
+        <AssociationConnector Association="U413.Domain.Models.FK_BanCreator_User" >
+          <ConnectorPoint PointX="2.2552103073859215" PointY="9.5" />
+          <ConnectorPoint PointX="2.2552103073859215" PointY="4.4322817530996463" />
+          <ConnectorPoint PointX="3" PointY="4.4322817530996463" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="U413.Domain.Models.Role" Width="1.5" PointX="3.125" PointY="21.375" Height="1.4033821614583388" />
+        <AssociationConnector Association="U413.Domain.Models.UserRoles" >
+          <ConnectorPoint PointX="3.125" PointY="22.076691080729169" />
+          <ConnectorPoint PointX="2.4593765104179535" PointY="22.076691080729169" />
+          <ConnectorPoint PointX="2.2927098437512865" PointY="22.076691080729169" />
+          <ConnectorPoint PointX="2.2729146875025736" PointY="22.076691080729169" />
+          <ConnectorPoint PointX="2.1062480208359067" PointY="22.076691080729169" />
+          <ConnectorPoint PointX="1.8146098504620554" PointY="22.076691080729169" />
+          <ConnectorPoint PointX="1.8146098504620554" PointY="17.633932291666667" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="U413.Domain.Models.Variable" Width="1.5" PointX="5.375" PointY="2.25" Height="1.4033821614583388" />
+        <EntityTypeShape EntityType="U413.Domain.Models.ShortURL" Width="1.5" PointX="7.875" PointY="3" Height="1.4033821614583388" />
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

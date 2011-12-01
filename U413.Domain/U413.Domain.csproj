@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A6220093-6743-497C-BD76-E3F2BC1A68D2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>U413.Domain</RootNamespace>
+    <AssemblyName>U413.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\U413.Domain.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\U413.Domain.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\Objects\CLS.cs" />
+    <Compile Include="Commands\Interfaces\ICommand.cs" />
+    <Compile Include="Commands\Objects\BOARDS.cs" />
+    <Compile Include="Commands\Objects\BOARD.cs" />
+    <Compile Include="Commands\Objects\ALIAS.cs" />
+    <Compile Include="Commands\Objects\TEST.cs" />
+    <Compile Include="Commands\Objects\INITIALIZE.cs" />
+    <Compile Include="Commands\Objects\USER.cs" />
+    <Compile Include="Commands\Objects\STATS.cs" />
+    <Compile Include="Commands\Objects\SETTINGS.cs" />
+    <Compile Include="Commands\Objects\MESSAGE.cs" />
+    <Compile Include="Commands\Objects\MESSAGES.cs" />
+    <Compile Include="Commands\Objects\TOPIC.cs" />
+    <Compile Include="Commands\Objects\REGISTER.cs" />
+    <Compile Include="Commands\Objects\LOGOUT.cs" />
+    <Compile Include="Commands\Objects\LOGIN.cs" />
+    <Compile Include="Entities\Alias.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Ban.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Board.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ChannelStatus.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ChatBufferItem.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Entities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Entities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Entities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\EntityExtensions\Board.cs" />
+    <Compile Include="Entities\Entities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Entities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\EntityExtensions\Reply.cs" />
+    <Compile Include="Entities\EntityExtensions\ShortURL.cs" />
+    <Compile Include="Entities\EntityExtensions\Topic.cs" />
+    <Compile Include="Entities\EntityExtensions\User.cs" />
+    <Compile Include="Entities\Ignore.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Invite.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Message.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Reply.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Role.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ShortURL.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Topic.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TopicFollow.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TopicVisit.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\User.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\UserActivityLogItem.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Variable.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ViewedPolicy.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enums\DisplayMode.cs" />
+    <Compile Include="ExtensionMethods\IntExtensions.cs" />
+    <Compile Include="Objects\CollectionPage.cs" />
+    <Compile Include="Objects\ForumStats.cs" />
+    <Compile Include="Objects\DisplayItem.cs" />
+    <Compile Include="Objects\UserStats.cs" />
+    <Compile Include="Repositories\Interfaces\IVariableRepository.cs" />
+    <Compile Include="Repositories\Objects\VariableRepository.cs" />
+    <Compile Include="Settings\AppSettings.cs" />
+    <Compile Include="Settings\DisplayTemplates.cs" />
+    <Compile Include="Settings\RoleTemplates.cs" />
+    <Compile Include="TerminalApi.cs" />
+    <Compile Include="Commands\Objects\EXIT.cs" />
+    <Compile Include="Enums\ContextStatus.cs" />
+    <Compile Include="ExtensionMethods\DateTimeExtensions.cs" />
+    <Compile Include="ExtensionMethods\StringExtensions.cs" />
+    <Compile Include="Ninject\U413Bindings.cs" />
+    <Compile Include="Objects\CommandContext.cs" />
+    <Compile Include="Objects\CommandResult.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Interfaces\IAliasRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IBanRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IBoardRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IChannelStatusRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IChatBufferItemRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IMessageRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IReplyRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IShortUrlRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ITopicRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\Objects\AliasRepository.cs" />
+    <Compile Include="Repositories\Objects\BanRepository.cs" />
+    <Compile Include="Repositories\Objects\BoardRepository.cs" />
+    <Compile Include="Repositories\Objects\ChannelStatusRepository.cs" />
+    <Compile Include="Repositories\Objects\ChatBufferItemRepository.cs" />
+    <Compile Include="Repositories\Objects\MessageRepository.cs" />
+    <Compile Include="Repositories\Objects\ReplyRepository.cs" />
+    <Compile Include="Repositories\Objects\ShortUrlRepository.cs" />
+    <Compile Include="Repositories\Objects\TopicRepository.cs" />
+    <Compile Include="Repositories\Objects\UserRepository.cs" />
+    <Compile Include="Settings\RegularExpressions.cs" />
+    <Compile Include="Utilities\BBCodeUtility.cs" />
+    <Compile Include="Utilities\HelpUtility.cs" />
+    <Compile Include="Utilities\Mono.Options.cs" />
+    <Compile Include="Utilities\PagingUtility.cs" />
+    <Compile Include="Utilities\ShortCodeUtility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Entities\Entities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Entities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <None Include="Entities\Entities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Entities.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Entities\Entities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Entities.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
