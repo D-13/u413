@@ -95,11 +95,6 @@ namespace U413.Domain.Commands.Objects
                     "Ban the user for a specified amount of time.",
                     x => ban = x != null
                 );
-                options.Add(
-                    "mc|minecraft=",
-                    "White-lists a {Minecraft Username} to play on the U413 Minecraft server.",
-                    x => minecraftUsername = x
-                );
             }
             if (this.CommandResult.CurrentUser.IsAdministrator)
             {
@@ -328,40 +323,6 @@ namespace U413.Domain.Commands.Objects
                                     }
                                     else
                                         this.CommandResult.WriteLine("You are not authorized to ban user '{0}'.", user.Username);
-                                }
-                                else
-                                    this.CommandResult.WriteLine("There is no user with the username '{0}'.", parsedArgs[0]);
-                            }
-                            else
-                                this.CommandResult.WriteLine("You must specify a username.");
-                        }
-                        else if (minecraftUsername != null)
-                        {
-                            if (parsedArgs.Length == 1)
-                            {
-                                var user = _userRepository.GetUser(parsedArgs[0]);
-                                if (user != null)
-                                {
-                                    user.UserActivityLog.Add(new UserActivityLogItem
-                                    {
-                                        Type = "Generic",
-                                        Date = DateTime.UtcNow,
-                                        Information = string.Format(
-                                            "{0} white-listed Minecraft username {1} for {2}.",
-                                            this.CommandResult.CurrentUser.Username,
-                                            minecraftUsername,
-                                            user.Username
-                                        )
-                                    });
-                                    var service = new ServiceController("U413Minecraft");
-                                    service.Stop();
-                                    service.WaitForStatus(ServiceControllerStatus.Stopped);
-                                    var minecraftWhitelist = File.AppendText(@"C:\Minecraft\U413 Pre Release\white-list.txt");
-                                    minecraftWhitelist.WriteLine(minecraftUsername);
-                                    minecraftWhitelist.Close();
-                                    service.Start();
-                                    service.WaitForStatus(ServiceControllerStatus.Running);
-                                    this.CommandResult.WriteLine("{0} successfully white-listed.", minecraftUsername);
                                 }
                                 else
                                     this.CommandResult.WriteLine("There is no user with the username '{0}'.", parsedArgs[0]);
