@@ -25,6 +25,7 @@ namespace U413.Domain.Entities
         public bool Hidden { get; set; }
         public bool ModsOnly { get; set; }
         public bool Locked { get; set; }
+        public bool Anonymous { get; set; }
     
         public virtual ICollection<Topic> Topics { get; set; }
     }

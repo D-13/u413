@@ -173,7 +173,26 @@ namespace U413.Domain.Commands.Objects
                             {
                                 var topicId = parsedArgs[0].ToLong();
                                 var page = 1;
-                                WriteTopic(topicId, page);
+                                var topic = _topicRepository.GetTopic(topicId);
+                                var isAnonymous = _boardRepository.GetBoard(topic.BoardID).Anonymous;
+                                if (topic != null)
+                                {
+                                    if (topic.ModsOnly)
+                                    {
+                                        if (this.CommandResult.CurrentUser.IsModerator || this.CommandResult.CurrentUser.IsAdministrator)
+                                        {
+                                            WriteTopic(topicId, page, isAnonymous);
+                                        }
+                                        else
+                                            this.CommandResult.WriteLine("You do not have permission to view this topic.");
+                                    }
+                                    else
+                                    {
+                                        WriteTopic(topicId, page, isAnonymous);
+                                    }
+                                }
+                                else
+                                    this.CommandResult.WriteLine("'{0}' is not a valid topic ID.", parsedArgs[0]);
                             }
                             else
                                 this.CommandResult.WriteLine("'{0}' is not a valid topic ID.", parsedArgs[0]);
@@ -186,12 +205,29 @@ namespace U413.Domain.Commands.Objects
                                 if (parsedArgs[1].IsInt())
                                 {
                                     var page = parsedArgs[1].ToInt();
-                                    WriteTopic(topicId, page);
+                                    var topic = _topicRepository.GetTopic(topicId);
+                                    var isAnonymous = _boardRepository.GetBoard(topic.BoardID).Anonymous;
+                                    if (topic != null)
+                                    {
+                                        if (topic.ModsOnly)
+                                        {
+                                            if (this.CommandResult.CurrentUser.IsModerator || this.CommandResult.CurrentUser.IsAdministrator)
+                                            {
+                                                WriteTopic(topicId, page, isAnonymous);
+                                            }
+                                            else
+                                                this.CommandResult.WriteLine("You do not have permission to view this topic.");
+                                        }
+                                        else
+                                            WriteTopic(topicId, page, isAnonymous);
+                                    }
+                                    else
+                                        this.CommandResult.WriteLine("'{0}' is not a valid topic ID.", parsedArgs[0]);
                                 }
                                 else if (PagingUtility.Shortcuts.Any(x => parsedArgs[1].Is(x)))
                                 {
                                     var page = PagingUtility.TranslateShortcut(parsedArgs[1], this.CommandResult.CommandContext.CurrentPage);
-                                    WriteTopic(topicId, page);
+                                    WriteTopic(topicId, page, false);
                                     if (parsedArgs[1].Is("last") || parsedArgs[1].Is("prev"))
                                         this.CommandResult.ScrollToBottom = true;
                                 }
@@ -619,7 +655,7 @@ namespace U413.Domain.Commands.Objects
                                     if (parsedArgs[0].IsLong())
                                     {
                                         var topicId = parsedArgs[0].ToLong();
-                                        WriteTopic(topicId, this.CommandResult.CommandContext.CurrentPage);
+                                        WriteTopic(topicId, this.CommandResult.CommandContext.CurrentPage, false);
                                     }
                                     else
                                         this.CommandResult.WriteLine("'{0}' is not a valid topic ID.", parsedArgs[0]);
@@ -637,7 +673,7 @@ namespace U413.Domain.Commands.Objects
             }
         }
 
-        private void WriteTopic(long topicId, int page)
+        private void WriteTopic(long topicId, int page, bool isAnonymous)
         {
             var topic = _topicRepository.GetTopic(topicId);
             if (topic != null)
@@ -659,9 +695,18 @@ namespace U413.Domain.Commands.Objects
                 if (topic.Locked)
                     status.Append("[LOCKED] ");
                 this.CommandResult.WriteLine(DisplayMode.Inverted | DisplayMode.DontType, "{{{0}}} > {{{1}}} {2}{3}", topic.BoardID, topic.TopicID, status, topic.Title);
-                this.CommandResult.WriteLine(DisplayMode.Italics | DisplayMode.DontType, "Posted by {0} on {1} | {2} replies", topic.Username, topic.PostedDate.TimePassed(), topicPage.TotalItems);
-                if (topic.EditedBy != null)
-                    this.CommandResult.WriteLine(DisplayMode.Italics | DisplayMode.DontType, "[Edited by {0} {1}]", topic.EditedBy, topic.LastEdit.TimePassed());
+                if (isAnonymous)
+                {
+                    this.CommandResult.WriteLine(DisplayMode.Italics | DisplayMode.DontType, "Posted by {0} on {1} | {2} replies", 'a', topic.PostedDate.TimePassed(), topicPage.TotalItems);
+                    if (topic.EditedBy != null)
+                        this.CommandResult.WriteLine(DisplayMode.Italics | DisplayMode.DontType, "[Edited by {0} {1}]", 'e', topic.LastEdit.TimePassed());
+                }
+                else
+                {
+                    this.CommandResult.WriteLine(DisplayMode.Italics | DisplayMode.DontType, "Posted by {0} on {1} | {2} replies", topic.Username, topic.PostedDate.TimePassed(), topicPage.TotalItems);
+                    if (topic.EditedBy != null)
+                        this.CommandResult.WriteLine(DisplayMode.Italics | DisplayMode.DontType, "[Edited by {0} {1}]", topic.EditedBy, topic.LastEdit.TimePassed());
+                }
                 this.CommandResult.WriteLine();
                 this.CommandResult.WriteLine(DisplayMode.Parse | DisplayMode.DontType, topic.Body);
                 this.CommandResult.WriteLine();
@@ -677,13 +722,19 @@ namespace U413.Domain.Commands.Objects
                     var displayMode = DisplayMode.DontType;
                     if (reply.ModsOnly && !topic.IsModsOnly())
                         displayMode |= DisplayMode.Dim;
-                    this.CommandResult.WriteLine(displayMode, "{{{0}}} | Reply by {1} {2}", reply.ReplyID, reply.Username, reply.PostedDate.TimePassed());
+                    if (isAnonymous)
+                        this.CommandResult.WriteLine(displayMode, "{{{0}}} | Reply by {1}{2} {3}", reply.ReplyID, 'b', index, reply.PostedDate.TimePassed());
+                    else
+                        this.CommandResult.WriteLine(displayMode, "{{{0}}} | Reply by {1} {2}", reply.ReplyID, reply.Username, reply.PostedDate.TimePassed());
                     this.CommandResult.WriteLine();
                     this.CommandResult.WriteLine(displayMode | DisplayMode.Parse, "{0}", reply.Body);
                     this.CommandResult.WriteLine();
                     if (reply.EditedBy != null)
                     {
-                        this.CommandResult.WriteLine(displayMode | DisplayMode.Italics, "[Edited by {0} {1}]", reply.EditedBy, reply.LastEdit.TimePassed());
+                        if (isAnonymous)
+                            this.CommandResult.WriteLine(displayMode | DisplayMode.Italics, "[Edited by {0}{1} {2}]", 'e', index, reply.LastEdit.TimePassed());
+                        else
+                            this.CommandResult.WriteLine(displayMode | DisplayMode.Italics, "[Edited by {0} {1}]", reply.EditedBy, reply.LastEdit.TimePassed());
                         this.CommandResult.WriteLine();
                     }
                     this.CommandResult.WriteLine(DisplayMode.Dim | DisplayMode.DontType, new string('-', AppSettings.DividerLength));

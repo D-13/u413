@@ -123,8 +123,24 @@ namespace U413.Domain.Commands.Objects
                             if (parsedArgs[0].IsShort())
                             {
                                 var boardId = parsedArgs[0].ToShort();
+                                var board = _boardRepository.GetBoard(boardId);
                                 var page = 1;
-                                WriteTopics(boardId, page);
+                                if (board != null)
+                                {
+                                    if (board.ModsOnly)
+                                    {
+                                        if (this.CommandResult.CurrentUser.IsModerator || this.CommandResult.CurrentUser.IsAdministrator)
+                                        {
+                                            WriteTopics(boardId, page, board.Anonymous);
+                                        }
+                                        else
+                                            this.CommandResult.WriteLine("You do not have permission to access this board.");
+                                    }
+                                    else
+                                        WriteTopics(boardId, page, board.Anonymous);
+                                }
+                                else
+                                    this.CommandResult.WriteLine("'{0}' is not a valid board ID.", parsedArgs[0]);
                             }
                             else
                                 this.CommandResult.WriteLine("'{0}' is not a valid board ID.", parsedArgs[0]);
@@ -137,12 +153,28 @@ namespace U413.Domain.Commands.Objects
                                 if (parsedArgs[1].IsInt())
                                 {
                                     var page = parsedArgs[1].ToInt();
-                                    WriteTopics(boardId, page);
+                                    var board = _boardRepository.GetBoard(boardId);
+                                    if (board != null)
+                                    {
+                                        if (board.ModsOnly)
+                                        {
+                                            if (this.CommandResult.CurrentUser.IsModerator || this.CommandResult.CurrentUser.IsAdministrator)
+                                            {
+                                                WriteTopics(boardId, page, board.Anonymous);
+                                            }
+                                            else
+                                                this.CommandResult.WriteLine("You do not have permission to access this board.");
+                                        }
+                                        else
+                                            WriteTopics(boardId, page, board.Anonymous);
+                                    }
+                                    else
+                                        this.CommandResult.WriteLine("'{0}' is not a valid board ID.", parsedArgs[0]);
                                 }
                                 else if (PagingUtility.Shortcuts.Any(x => parsedArgs[1].Is(x)))
                                 {
                                     var page = PagingUtility.TranslateShortcut(parsedArgs[1], this.CommandResult.CommandContext.CurrentPage);
-                                    WriteTopics(boardId, page);
+                                    WriteTopics(boardId, page, _boardRepository.GetBoard(boardId).Anonymous);
                                     if (parsedArgs[1].Is("last") || parsedArgs[1].Is("prev"))
                                         this.CommandResult.ScrollToBottom = false;
                                 }
@@ -193,20 +225,41 @@ namespace U413.Domain.Commands.Objects
                                                 }
                                                 else if (this.CommandResult.CommandContext.PromptData.Length == 2)
                                                 {
-                                                    var topic = new Topic
+                                                    Topic topic = new Topic { };
+                                                    if (board.Anonymous)
                                                     {
-                                                        BoardID = boardId,
-                                                        Title = this.CommandResult.CommandContext.PromptData[0],
-                                                        Body = BBCodeUtility.SimplifyComplexTags(
-                                                            this.CommandResult.CommandContext.PromptData[1],
-                                                            _replyRepository,
-                                                            this.CommandResult.CurrentUser.IsModerator || this.CommandResult.CurrentUser.IsAdministrator    
-                                                        ),
-                                                        Username = this.CommandResult.CurrentUser.Username,
-                                                        PostedDate = DateTime.UtcNow,
-                                                        LastEdit = DateTime.UtcNow,
-                                                        ModsOnly = modTopic && !board.ModsOnly
-                                                    };
+                                                        topic = new Topic
+                                                        {
+                                                            BoardID = boardId,
+                                                            Title = this.CommandResult.CommandContext.PromptData[0],
+                                                            Body = BBCodeUtility.SimplifyComplexTags(
+                                                                this.CommandResult.CommandContext.PromptData[1],
+                                                                _replyRepository,
+                                                                this.CommandResult.CurrentUser.IsModerator || this.CommandResult.CurrentUser.IsAdministrator
+                                                            ),
+                                                            Username = "Anony",
+                                                            PostedDate = DateTime.UtcNow,
+                                                            LastEdit = DateTime.UtcNow,
+                                                            ModsOnly = modTopic && !board.ModsOnly
+                                                        };
+                                                    }
+                                                    else
+                                                    {
+                                                        topic = new Topic
+                                                        {
+                                                            BoardID = boardId,
+                                                            Title = this.CommandResult.CommandContext.PromptData[0],
+                                                            Body = BBCodeUtility.SimplifyComplexTags(
+                                                                this.CommandResult.CommandContext.PromptData[1],
+                                                                _replyRepository,
+                                                                this.CommandResult.CurrentUser.IsModerator || this.CommandResult.CurrentUser.IsAdministrator
+                                                            ),
+                                                            Username = this.CommandResult.CurrentUser.Username,
+                                                            PostedDate = DateTime.UtcNow,
+                                                            LastEdit = DateTime.UtcNow,
+                                                            ModsOnly = modTopic && !board.ModsOnly
+                                                        };
+                                                    }
                                                     _topicRepository.AddTopic(topic);
                                                     this.CommandResult.CommandContext.Restore();
                                                     var TOPIC = this.AvailableCommands.SingleOrDefault(x => x.Name.Is("TOPIC"));
@@ -263,7 +316,7 @@ namespace U413.Domain.Commands.Objects
                                     if (parsedArgs[0].IsShort())
                                     {
                                         var boardId = parsedArgs[0].ToShort();
-                                        WriteTopics(boardId, this.CommandResult.CommandContext.CurrentPage);
+                                        WriteTopics(boardId, this.CommandResult.CommandContext.CurrentPage, false);
                                     }
                                     else
                                         this.CommandResult.WriteLine("'{0}' is not a valid board ID.", parsedArgs[0]);
@@ -281,7 +334,7 @@ namespace U413.Domain.Commands.Objects
             }
         }
 
-        private void WriteTopics(short boardId, int page)
+        private void WriteTopics(short boardId, int page, bool isAnonymous)
         {
             var board = _boardRepository.GetBoard(boardId);
             if (board != null)
@@ -317,9 +370,15 @@ namespace U413.Domain.Commands.Objects
                         status.Append("[LOCKED] ");
                     string boardNumber = boardId == 0 ? string.Format("{{{0}}} > ", topic.BoardID) : string.Empty;
                     this.CommandResult.WriteLine(displayMode, "{0}{{{1}}} {2}{3}", boardNumber, topic.TopicID, status, topic.Title);
-                    this.CommandResult.WriteLine(displayMode, "   by {0} {1} | {2} replies", topic.Username, topic.PostedDate.TimePassed(), replies.Count());
+                    if (isAnonymous)
+                        this.CommandResult.WriteLine(displayMode, "   by {0} {1} | {2} replies", 'a', topic.PostedDate.TimePassed(), replies.Count());
+                    else
+                        this.CommandResult.WriteLine(displayMode, "   by {0} {1} | {2} replies", topic.Username, topic.PostedDate.TimePassed(), replies.Count());
                     if (lastReply != null)
-                        this.CommandResult.WriteLine(displayMode, "   last reply by {0} {1}", lastReply.Username, lastReply.PostedDate.TimePassed());
+                        if (isAnonymous)
+                            this.CommandResult.WriteLine(displayMode, "   last reply by {0} {1}", 'b', lastReply.PostedDate.TimePassed());
+                        else
+                            this.CommandResult.WriteLine(displayMode, "   last reply by {0} {1}", lastReply.Username, lastReply.PostedDate.TimePassed());
                     this.CommandResult.WriteLine();
                     this.CommandResult.WriteLine(DisplayMode.Dim | DisplayMode.DontType, new string('-', AppSettings.DividerLength));
                     this.CommandResult.WriteLine();

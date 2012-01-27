@@ -131,6 +131,7 @@
           <Property Name="Hidden" Type="bit" Nullable="false" />
           <Property Name="ModsOnly" Type="bit" Nullable="false" />
           <Property Name="Locked" Type="bit" Nullable="false" />
+          <Property Name="Anonymous" Type="bit" />
         </EntityType>
         <EntityType Name="Channel_Status">
           <Key>
@@ -1078,6 +1079,7 @@
           <Property Type="Boolean" Name="ModsOnly" Nullable="false" />
           <Property Type="Boolean" Name="Locked" Nullable="false" />
           <NavigationProperty Name="Topics" Relationship="U413.Domain.Models.FK_Topics_Boards" FromRole="Board" ToRole="Topic" />
+          <Property Type="Boolean" Name="Anonymous" Nullable="false" />
         </EntityType>
         <Association Name="FK_Topics_Boards">
           <End Type="U413.Domain.Models.Board" Role="Board" Multiplicity="1" />
@@ -1313,6 +1315,7 @@
           <EntitySetMapping Name="Boards">
             <EntityTypeMapping TypeName="U413.Domain.Models.Board">
               <MappingFragment StoreEntitySet="Boards">
+                <ScalarProperty Name="Anonymous" ColumnName="Anonymous" />
                 <ScalarProperty Name="Locked" ColumnName="Locked" />
                 <ScalarProperty Name="ModsOnly" ColumnName="ModsOnly" />
                 <ScalarProperty Name="Hidden" ColumnName="Hidden" />
@@ -1410,10 +1413,10 @@
           <ConnectorPoint PointX="3.25" PointY="23.553873442165898" />
         </AssociationConnector>
         <AssociationConnector Association="U413.Domain.Models.FK_Replies_Topics" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="16.459350585937504" />
-          <ConnectorPoint PointX="5.682291666666667" PointY="16.459350585937504" />
-          <ConnectorPoint PointX="5.848958333333333" PointY="16.459350585937504" />
-          <ConnectorPoint PointX="8" PointY="16.459350585937504" />
+          <ConnectorPoint PointX="8" PointY="15.692047526041668" />
+          <ConnectorPoint PointX="5.989583333333333" PointY="15.692047526041666" />
+          <ConnectorPoint PointX="5.697916666666667" PointY="15.692047526041668" />
+          <ConnectorPoint PointX="5.25" PointY="15.692047526041668" />
         </AssociationConnector>
         <AssociationConnector Association="U413.Domain.Models.FK_Replies_Users" ManuallyRouted="false">
           <ConnectorPoint PointX="2.5" PointY="16.295534928713614" />
@@ -1449,10 +1452,10 @@
           <ConnectorPoint PointX="3.125" PointY="19.865143229166669" />
         </AssociationConnector>
         <AssociationConnector Association="U413.Domain.Models.FK_Topics_Users" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.5" PointY="17.477763671875003" />
-          <ConnectorPoint PointX="5.682291666666667" PointY="17.477763671875003" />
-          <ConnectorPoint PointX="5.848958333333333" PointY="17.477763671875003" />
-          <ConnectorPoint PointX="8" PointY="17.477763671875003" />
+          <ConnectorPoint PointX="2.5" PointY="13.84375" />
+          <ConnectorPoint PointX="5.697916666666667" PointY="13.843749999999998" />
+          <ConnectorPoint PointX="5.989583333333333" PointY="13.84375" />
+          <ConnectorPoint PointX="8" PointY="13.84375" />
         </AssociationConnector>
         <AssociationConnector Association="U413.Domain.Models.FK_User_Activity_Log_Users" ManuallyRouted="false">
           <ConnectorPoint PointX="2.5" PointY="13.7698008182082" />
@@ -1491,11 +1494,11 @@
           <ConnectorPoint PointX="2.375" PointY="7.0381982421875" />
         </AssociationConnector>
         <EntityTypeShape EntityType="U413.Domain.Models.Alias" Width="1.5" PointX="8.375" PointY="5.25" Height="1.5956835937500031" />
-        <EntityTypeShape EntityType="U413.Domain.Models.Board" Width="1.5" PointX="5.875" PointY="6.625" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="U413.Domain.Models.Board" Width="1.5" PointX="5.875" PointY="6.625" Height="2.5571907552083317" IsExpanded="true" />
         <AssociationConnector Association="U413.Domain.Models.FK_Topics_Boards" >
-          <ConnectorPoint PointX="5.90625" PointY="8.9898893229166656" />
-          <ConnectorPoint PointX="5.90625" PointY="14.627271263020834" />
-          <ConnectorPoint PointX="8" PointY="14.627271263020834" />
+          <ConnectorPoint PointX="5.90625" PointY="9.1821907552083317" />
+          <ConnectorPoint PointX="5.90625" PointY="16.8337280859375" />
+          <ConnectorPoint PointX="8" PointY="16.8337280859375" />
         </AssociationConnector>
         <AssociationConnector Association="U413.Domain.Models.FK_BanCreator_User" >
           <ConnectorPoint PointX="2.2552103073859215" PointY="9.5" />
