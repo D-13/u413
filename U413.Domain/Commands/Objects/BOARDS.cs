@@ -91,28 +91,16 @@ namespace U413.Domain.Commands.Objects
                     long topicCount = board.BoardID == 0
                         ? _topicRepository.AllTopicsCount()
                         : board.TopicCount(this.CommandResult.CurrentUser.IsModerator);
-                    if (board.BoardID == 7)
-                    {
-                        this.CommandResult.WriteLine(displayMode, "{{00{0}}} {1}{2}{3}{4}{5} | {6} topics",
-                            board.BoardID,
-                            board.Hidden ? "[HIDDEN] " : string.Empty,
-                            board.ModsOnly ? "[MODSONLY] " : string.Empty,
-                            board.Locked ? "[LOCKED] " : string.Empty,
-                            board.Anonymous ? "[ANON] " : string.Empty,
-                            board.Name,
-                            topicCount);
-                    }
-                    else
-                    {
+
                         this.CommandResult.WriteLine(displayMode, "{{{0}}} {1}{2}{3}{4}{5} | {6} topics",
-                            board.BoardID,
+                            board.BoardID == 7 ? board.BoardID.ToString().PadLeft(3, '0') : board.BoardID.ToString(),
                             board.Hidden ? "[HIDDEN] " : string.Empty,
                             board.ModsOnly ? "[MODSONLY] " : string.Empty,
                             board.Locked ? "[LOCKED] " : string.Empty,
                             board.Anonymous ? "[ANON] " : string.Empty,
                             board.Name,
                             topicCount);
-                    }
+
                     if (!board.Description.IsNullOrEmpty())
                         this.CommandResult.WriteLine(displayMode, "{0}", board.Description);
                 }

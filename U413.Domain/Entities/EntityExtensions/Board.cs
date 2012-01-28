@@ -36,7 +36,7 @@ namespace U413.Domain.Entities
                     .Count();
             else
                 return this.Topics
-                   .Where(x => !x.ModsOnly)
+                    .Where(x => !x.ModsOnly)
                     .Where(x => !x.Board.ModsOnly)
                     .Where(x => !x.Board.Hidden)
                     .Count();
